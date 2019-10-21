@@ -1324,6 +1324,9 @@ public class TestQuery {
         assertEquals("false", secondEvaluation);
 
         verifyEquals("${dotted:matches('abc\\.xyz')}", attributes, true);
+
+        // Test for matches(null)
+        assertEquals("false", Query.evaluateExpressions("${abc:matches(${not.here})}", attributes, null));
     }
 
     @Test
@@ -1344,6 +1347,9 @@ public class TestQuery {
         assertEquals("false", secondEvaluation);
 
         verifyEquals("${dotted:find('\\.')}", attributes, true);
+
+        // Test for find(null)
+        assertEquals("false", Query.evaluateExpressions("${abc:find(${not.here})}", attributes, null));
     }
 
     @Test
@@ -1810,6 +1816,11 @@ public class TestQuery {
         verifyEquals("${literal(true):ifElse(false, 'b')}", attributes, "false");
     }
 
+    @Test
+    public void testThread() {
+        final Map<String, String> attributes = new HashMap<>();
+        verifyEquals("${thread()}", attributes, "main");
+    }
 
     private void verifyEquals(final String expression, final Map<String, String> attributes, final Object expectedResult) {
         verifyEquals(expression,attributes, null, expectedResult);
