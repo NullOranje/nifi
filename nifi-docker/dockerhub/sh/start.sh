@@ -41,6 +41,8 @@ prop_replace 'nifi.zookeeper.root.node'                     "${NIFI_ZK_ROOT_NODE
 prop_replace 'nifi.cluster.flow.election.max.wait.time'     "${NIFI_ELECTION_MAX_WAIT:-5 mins}"
 prop_replace 'nifi.cluster.flow.election.max.candidates'    "${NIFI_ELECTION_MAX_CANDIDATES:-}"
 prop_replace 'nifi.web.proxy.context.path'                  "${NIFI_WEB_PROXY_CONTEXT_PATH:-}"
+prop_replace 'nifi.flow.configuration.file'                 "${NIFI_CONF_FILE_PATH:-./conf}/flow.xml.gz"
+prop_replace 'nifi.flow.configuration.archive.dir'          "${NIFI_CONF_FILE_PATH:-./conf}/archve/"
 
 . "${scripts_dir}/update_cluster_state_management.sh"
 
